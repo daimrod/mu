@@ -81,8 +81,18 @@
      ("zsh-users.zsh.org"                                     . "ZshUsr"))
   "AList of mailing lists id -> shortname")
 
-(defvar mu4e-user-mailing-lists nil
+(defcustom mu4e-user-mailing-lists nil
   "A list of (MAILING-LIST-ID . SHORTNAME); these are used in
-addition to the 'built-in' list `mu4e~user-lists'.")
+addition to the 'built-in' list `mu4e~user-lists'.
+
+Update the lists with `mu4e-lists-reset-lists'."
+  :type '(alist :key-type (string :tag "Mailing List ID")
+                :value-type (string :tag "Shortname"))
+  :group 'mu4e-view)
+
+(defun mu4e-lists-reset-lists ()
+  "Reset the lists of shortname for mailing lists."
+  (interactive)
+  (setq mu4e~lists-hash nil))
 
 (provide 'mu4e-lists)
